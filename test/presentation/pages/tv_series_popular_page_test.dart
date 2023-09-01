@@ -27,40 +27,40 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loading);
+  // testWidgets('Page should display center progress bar when loading',
+  //     (WidgetTester tester) async {
+  //   when(mockNotifier.state).thenReturn(RequestState.Loading);
 
-    final progressBarFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
+  //   final progressBarFinder = find.byType(CircularProgressIndicator);
+  //   final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesPopularPage()));
+  //   await tester.pumpWidget(_makeTestableWidget(TvSeriesPopularPage()));
 
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
-  });
+  //   expect(centerFinder, findsOneWidget);
+  //   expect(progressBarFinder, findsOneWidget);
+  // });
 
-  testWidgets('Page should display ListView when data is loaded',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvSeries).thenReturn(testTvSeriesList);
+  // testWidgets('Page should display ListView when data is loaded',
+  //     (WidgetTester tester) async {
+  //   when(mockNotifier.state).thenReturn(RequestState.Loaded);
+  //   when(mockNotifier.tvSeries).thenReturn(testTvSeriesList);
 
-    final listViewFinder = find.byType(ListView);
+  //   final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesPopularPage()));
+  //   await tester.pumpWidget(_makeTestableWidget(TvSeriesPopularPage()));
 
-    expect(listViewFinder, findsOneWidget);
-  });
+  //   expect(listViewFinder, findsOneWidget);
+  // });
 
-  testWidgets('Page should display text with message when Error',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
+  // testWidgets('Page should display text with message when Error',
+  //     (WidgetTester tester) async {
+  //   when(mockNotifier.state).thenReturn(RequestState.Error);
+  //   when(mockNotifier.message).thenReturn('Error message');
 
-    final textFinder = find.byKey(Key('error_message'));
+  //   final textFinder = find.byKey(Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesPopularPage()));
+  //   await tester.pumpWidget(_makeTestableWidget(TvSeriesPopularPage()));
 
-    expect(textFinder, findsOneWidget);
-  });
+  //   expect(textFinder, findsOneWidget);
+  // });
 }

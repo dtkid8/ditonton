@@ -19,7 +19,7 @@ import 'package:ditonton/presentation/pages/tv_series_popular_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_top_rated_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_series_page.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/now_playing_movies_cubit.dart';
@@ -30,6 +30,7 @@ class HomeMoviePage extends StatefulWidget {
 }
 
 class _HomeMoviePageState extends State<HomeMoviePage> {
+  final analytics = FirebaseAnalytics.instance;
   @override
   void initState() {
     super.initState();
@@ -39,6 +40,14 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
     context.read<NowPlayingMoviesCubit>().fetchNowPlayingMovies();
     context.read<PopularMoviesCubit>().fetchPopularMovies();
     context.read<TopRatedMoviesCubit>().fetchTopRatedMovies();
+    _testSetCurrentScreen();
+  }
+
+  Future<void> _testSetCurrentScreen() async {
+    await analytics.setCurrentScreen(
+      screenName: 'Home Movie Page',
+      screenClassOverride: 'HomeMoviePage',
+    );
   }
 
   @override
@@ -89,8 +98,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         title: Text('Ditonton'),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               //FirebaseCrashlytics.instance.crash();
+              await analytics.logEvent(
+                name: "click_event",
+                parameters: {
+                  "action": "Change route",
+                  "screen": "Search Page",
+                },
+              );
               Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
@@ -105,7 +121,16 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             children: [
               _buildSubHeading(
                 title: 'Now Playing Tv Series',
-                onTap: () => Navigator.pushNamed(context, TvSeriesAiringPage.ROUTE_NAME),
+                onTap: () async {
+                  await analytics.logEvent(
+                    name: "click_event",
+                    parameters: {
+                      "action": "Change route",
+                      "screen": "Tv Series Airing Page",
+                    },
+                  );
+                  Navigator.pushNamed(context, TvSeriesAiringPage.ROUTE_NAME);
+                },
               ),
               BlocBuilder<AiringTvSeriesCubit, GeneralState>(
                 builder: (context, state) {

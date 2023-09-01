@@ -35,10 +35,10 @@ class _TvSeriesPopularPageState extends State<TvSeriesPopularPage> {
             } else if (state is GeneralLoadedState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final series = state.data.tvSeries[index];
+                  final series = state.data[index];
                   return TvSeriesCard(series);
                 },
-                itemCount: state.data.tvSeries.length,
+                itemCount: state.data.length,
               );
             } else if (state is GeneralErrorState) {
               return Center(
