@@ -1,9 +1,10 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/bloc/general_state.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/watchlist_movies_cubit.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
@@ -12,14 +13,11 @@ class WatchlistMoviesPage extends StatefulWidget {
   _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
-    with RouteAware {
+class _WatchlistMoviesPageState extends State<WatchlistMoviesPage> with RouteAware {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
+    context.read<WatchlistMoviesCubit>().fetchWatchlistMovies();
   }
 
   @override
@@ -29,8 +27,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    context.read<WatchlistMoviesCubit>().fetchWatchlistMovies();
   }
 
   @override
@@ -41,25 +38,23 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<WatchlistMovieNotifier>(
-          builder: (context, data, child) {
-            if (data.watchlistState == RequestState.Loading) {
+        child: BlocBuilder<WatchlistMoviesCubit, GeneralState>(
+          builder: (context, state) {
+            if (state is GeneralLoadingState) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.watchlistState == RequestState.Loaded) {
+            } else if (state is GeneralLoadedState) {
+              final List<Movie> moviesList = state.data;
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.watchlistMovies[index];
+                  final movie = moviesList[index];
                   return MovieCard(movie);
                 },
-                itemCount: data.watchlistMovies.length,
+                itemCount: moviesList.length,
               );
             } else {
-              return Center(
-                key: Key('error_message'),
-                child: Text(data.message),
-              );
+              return Text('Failed');
             }
           },
         ),
