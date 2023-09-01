@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>446676176926-rqdjmlud6jum6nun0q3e7h258gh1eoip.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.446676176926-rqdjmlud6jum6nun0q3e7h258gh1eoip</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDGBxoB04W3j3vLOtz02BE8Vtwr0yoBqf0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>446676176926</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dicoding.ditonton.ericthioko</string>
+	<key>PROJECT_ID</key>
+	<string>ditonton-e1588</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ditonton-e1588.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:446676176926:ios:b8288c2fd2359311411e0f</string>
+	<key>NSBonjourServices</key>
+  <array>
+  <string>_dartobservatory._tcp</string>
+	</array>
+</dict>
+</plist>
