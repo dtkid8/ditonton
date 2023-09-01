@@ -1,5 +1,7 @@
 # a199-flutter-expert-project
 
+https://badgen.net/badge/build/Codemagic/red?icon=github
+
 Repository ini merupakan starter project submission kelas Flutter Expert Dicoding Indonesia.
 
 ---
