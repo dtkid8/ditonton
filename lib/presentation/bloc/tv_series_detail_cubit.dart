@@ -74,7 +74,6 @@ class TvSeriesDetailCubit extends Cubit<DetailState> {
       },
       (series) {
         _tvSeries = series;
-        emit(DetailLoadingState());
         recommendationResult.fold(
           (failure) {
             _message = failure.message;
@@ -82,9 +81,9 @@ class TvSeriesDetailCubit extends Cubit<DetailState> {
           },
           (seriesRecommendation) {
             _seriesRecommendations = seriesRecommendation;
+            emit(DetailLoadedState(DateTime.now()));
           },
         );
-        emit(DetailLoadedState(DateTime.now()));
       },
     );
   }

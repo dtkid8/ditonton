@@ -60,7 +60,6 @@ class MovieDetailCubit extends Cubit<DetailState> {
       },
       (movie) {
         _movie = movie;
-        emit(DetailLoadingState());
         recommendationResult.fold(
           (failure) {
             _message = failure.message;
@@ -68,9 +67,9 @@ class MovieDetailCubit extends Cubit<DetailState> {
           },
           (movieRecommendation) {
             _movieRecommendations = movieRecommendation;
+            emit(DetailLoadedState(DateTime.now()));
           },
         );
-        emit(DetailLoadedState(DateTime.now()));
       },
     );
   }
