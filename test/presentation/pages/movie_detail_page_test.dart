@@ -1,32 +1,32 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+// import 'package:ditonton/common/state_enum.dart';
+// import 'package:ditonton/domain/entities/movie.dart';
+// import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+// import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:mockito/annotations.dart';
+// import 'package:mockito/mockito.dart';
+// import 'package:provider/provider.dart';
 
-import '../../dummy_data/dummy_objects.dart';
-import 'movie_detail_page_test.mocks.dart';
+// import '../../dummy_data/dummy_objects.dart';
+// import 'movie_detail_page_test.mocks.dart';
 
-@GenerateMocks([MovieDetailNotifier])
-void main() {
-  late MockMovieDetailNotifier mockNotifier;
+// @GenerateMocks([MovieDetailNotifier])
+// void main() {
+//   late MockMovieDetailNotifier mockNotifier;
 
-  setUp(() {
-    mockNotifier = MockMovieDetailNotifier();
-  });
+//   setUp(() {
+//     mockNotifier = MockMovieDetailNotifier();
+//   });
 
-  Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<MovieDetailNotifier>.value(
-      value: mockNotifier,
-      child: MaterialApp(
-        home: body,
-      ),
-    );
-  }
+//   Widget _makeTestableWidget(Widget body) {
+//     return ChangeNotifierProvider<MovieDetailNotifier>.value(
+//       value: mockNotifier,
+//       child: MaterialApp(
+//         home: body,
+//       ),
+//     );
+//   }
 
   // testWidgets(
   //     'Watchlist button should display add icon when movie not added to watchlist',
@@ -105,4 +105,4 @@ void main() {
   //   expect(find.byType(AlertDialog), findsOneWidget);
   //   expect(find.text('Failed'), findsOneWidget);
   // });
-}
+//}
